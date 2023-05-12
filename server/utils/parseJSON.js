@@ -21,33 +21,37 @@ fs.readFile('./CardData.json', async (error, data) => {
   await database.openConnection();
 
   for (let i = 0; i < setSize; i++) {
-    name = cards[i].name;
-    artist = cards[i].artist;
-    setCode = cards[i].setCode;
-    number = cards[i].number;
-
-    if (name.includes('//')) {
-      const [frontName, backName] = name.split('//');
-      await database.insertNewCard(frontName.trim(), artist, setCode, number);
-      await database.insertNewCard(backName.trim(), artist, setCode, number);
-      i++; // skip next card since it's the back side of this one
-    } else {
-      await database.insertNewCard(name, artist, setCode, number);
-    }
+    if (cards[i]) {
+      name = cards[i].name;
+      artist = cards[i].artist;
+      setCode = cards[i].setCode;
+      number = cards[i].number;
+  
+      if (name.includes('//')) {
+        const [frontName, backName] = name.split('//');
+        await database.insertNewCard(frontName.trim(), artist, setCode, number);
+        await database.insertNewCard(backName.trim(), artist, setCode, number);
+        i++; // skip next card since it's the back side of this one
+      } else {
+        await database.insertNewCard(name, artist, setCode, number);
+      }
+    } else i++;
   }
 
   for (let j = 0; j < setSize; j++) {
-    name = cards[j].name;
-    colors = cards[j].colors;
-
-    if (name.includes('//')) {
-      const [frontName, backName] = name.split('//');
-      await database.updateColors(frontName.trim(), colors);
-      await database.updateColors(backName.trim(), colors);
-      j++; // skip next card since it's the back side of this one
-    } else {
-      await database.updateColors(name, colors);
-    }
+    if (cards[j]) {
+      name = cards[j].name;
+      colors = cards[j].colors;
+  
+      if (name.includes('//')) {
+        const [frontName, backName] = name.split('//');
+        await database.updateColors(frontName.trim(), colors);
+        await database.updateColors(backName.trim(), colors);
+        j++; // skip next card since it's the back side of this one
+      } else {
+        await database.updateColors(name, colors);
+      }
+    } else j++;
   }
 
   // Close the connection after the loop

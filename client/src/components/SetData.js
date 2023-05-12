@@ -10,14 +10,26 @@ const colorMap = {
 };
 
 function getCardBackground(colors) {
+  let colorStops = "#B3A295";
+  let colorStopLight = "#D9D5D3";
   if (!colors || !Array.isArray(colors) || colors.length === 0) {
-    const color = "lightgray";
-    return `linear-gradient(to right, ${color}, ${color})`;
+    return `linear-gradient(to right, ${colorStops}, ${colorStopLight})`;
   } else if (colors.length === 1) {
-    const colorStops = colorMap[colors];
-    return `linear-gradient(to right, ${colorStops}, ${colorStops})`;
+    colorStops = colorMap[colors];
+    if (colorStops === "#F9FAF4") {
+      colorStopLight = "#F8E7B9";
+    } else if (colorStops === "#0E68AB") {
+      colorStopLight = "#B3CEEA";
+    } else if (colorStops === "#150B00") {
+      colorStopLight = "#A69F9D";
+    } else if (colorStops === "#D3202A") {
+      colorStopLight = "#EB9F82";
+    } else {
+      colorStopLight = "#C4D3CA";
+    }
+    return `linear-gradient(to right, ${colorStops}, ${colorStopLight})`;
   }
-  const colorStops = colors.map(color => colorMap[color]).join(",");
+  colorStops = colors.map(color => colorMap[color]).join(",");
   return `linear-gradient(to right, ${colorStops})`;
 }
 

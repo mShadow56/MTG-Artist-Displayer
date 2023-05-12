@@ -11,8 +11,8 @@
 
 .card {
     border: 2px solid black;
-    background: linear-gradient(to right, lightgrey, lightgray);
-    /*background-color: silver;*/
+    /*background: linear-gradient(to right, lightgrey, lightgray);
+    background-color: silver;*/
     padding: 2px;
     margin: 2px;
     width: auto;

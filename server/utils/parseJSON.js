@@ -2,7 +2,7 @@ const fs = require('fs');
 const cardData = require('./CardData.json');
 const database = require('./database');
 
-fs.readFile('./CardData.json', (error, data) => {
+fs.readFile('./CardData.json', async (error, data) => {
   if (error) {
     console.log(error);
     return;
@@ -15,23 +15,41 @@ fs.readFile('./CardData.json', (error, data) => {
   let artist;
   let setCode;
   let number;
-  //let colors;
+  let colors;
+
+  // Open the connection before the loop
+  await database.openConnection();
 
   for (let i = 0; i < setSize; i++) {
     name = cards[i].name;
     artist = cards[i].artist;
     setCode = cards[i].setCode;
     number = cards[i].number;
-	//colors = cards[i].colors;
 
     if (name.includes('//')) {
       const [frontName, backName] = name.split('//');
-      database.insertNewCard(frontName.trim(), artist, setCode, number);
-      database.insertNewCard(backName.trim(), artist, setCode, number);
+      await database.insertNewCard(frontName.trim(), artist, setCode, number);
+      await database.insertNewCard(backName.trim(), artist, setCode, number);
       i++; // skip next card since it's the back side of this one
     } else {
-      database.insertNewCard(name, artist, setCode, number);
+      await database.insertNewCard(name, artist, setCode, number);
     }
-	//database.updateColors(name, colors);
   }
+
+  for (let j = 0; j < setSize; j++) {
+    name = cards[j].name;
+    colors = cards[j].colors;
+
+    if (name.includes('//')) {
+      const [frontName, backName] = name.split('//');
+      await database.updateColors(frontName.trim(), colors);
+      await database.updateColors(backName.trim(), colors);
+      j++; // skip next card since it's the back side of this one
+    } else {
+      await database.updateColors(name, colors);
+    }
+  }
+
+  // Close the connection after the loop
+  await database.closeConnection();
 });

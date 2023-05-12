@@ -1,4 +1,4 @@
-const fs= require('fs');
+const fs = require('fs');
 const request = require('request');
 
 request('https://mtgjson.com/api/v5/SIS.json', function (error, response, body) {

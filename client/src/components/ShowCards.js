@@ -33,7 +33,7 @@ function getCardBackground(colors) {
   return `linear-gradient(to right, ${colorStops})`;
 }
 
-function SetData() {
+function ShowCards() {
   const { setCode } = useParams();
   const [backendData, setBackendData] = useState([{}]);
 
@@ -56,20 +56,30 @@ function SetData() {
     return "black";
   }
 
-  function getCardName(name) {
+  function getCardNameWithApostrophe(name) {
     console.log(name);
     if (typeof name === 'string' && name !== undefined) {
       return name.replace(/_/g, "'");
     }
     return "";
   }
+
+  function getCardNames(cards, artist) {
+    let cardNames = [];
+    for (let i; i < cards.length; i++) {
+      if (cards[i].artist === artist) {
+        cardNames.push(cards[i].name);
+      }
+    }
+    return cardNames;
+  }
   
   return (
-    <div className="cardsTable">
-      <div>
+    <div>
+      <div className="cardsTable">
         {backendData.slice(0, backendData.length).map(card => (
           <div className="card" key={card.id * 2} style={{ background: getCardBackground(card.colors), color: getTextColor(card.colors) }}>
-            <h2>{getCardName(card.name)} ({card.number} of {backendData[backendData.length - 1].number})</h2>
+            <h2>{getCardNameWithApostrophe(card.name)} ({card.number} of {backendData[backendData.length - 1].number})</h2>
             <p>Art by {card.artist}</p>
           </div>
         ))}
@@ -78,4 +88,4 @@ function SetData() {
   );
 }
 
-export default SetData;
+export default ShowCards;

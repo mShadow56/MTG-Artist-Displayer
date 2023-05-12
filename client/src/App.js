@@ -1,13 +1,21 @@
 import "./App.css";
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SetData from './components/SetData';
+import ShowCards from './components/ShowCards';
+import ShowArt from './components/ShowArt';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/set/:setCode" element={<SetData />} />
+        <Route path="/set/:setCode" element={<div>
+          <ShowCards>
+            
+          </ShowCards>
+          <ShowArt>
+
+          </ShowArt>
+          </div>} ></Route>
       </Routes>
     </BrowserRouter>
   );

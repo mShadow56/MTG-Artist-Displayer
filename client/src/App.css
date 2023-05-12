@@ -1,4 +1,24 @@
 
+.artistsTable {
+    border: 4px solid black;
+    background-color: grey;
+    padding: 2px;
+    margin: 2px;
+    width: 30%;
+    height: auto;
+    float: left;
+}
+
+.artist {
+    border: 2px solid black;
+    /*background: linear-gradient(to right, lightgrey, lightgray);
+    background-color: silver;*/
+    padding: 2px;
+    margin: 2px;
+    width: auto;
+    height: auto;
+  }
+
 .cardsTable {
     border: 4px solid black;
     background-color: grey;

@@ -8,8 +8,8 @@ let connection = mysql.createConnection({
 });
 
 function insertNewCard(name, artist, setCode, number) {
-  name = name.replace(/'/g, "");
-  artist = artist.replace(/'/g, "");
+  name = name.replace(/'/g, "_");
+  artist = artist.replace(/'/g, "_");
 
   return new Promise((resolve, reject) => {
     connection.query("SELECT * FROM cards", function (err, resultSQL) {
@@ -34,8 +34,8 @@ function insertNewCard(name, artist, setCode, number) {
 }
 
 function updateColors(name, colors) {
-  name = name.replace(/'/g, "");
-  
+  name = name.replace(/'/g, "_");
+
   return new Promise((resolve, reject) => {
     connection.query(`SELECT id FROM cards WHERE name = '${name}'`, function (err, resultSQL) {
       if (err) {

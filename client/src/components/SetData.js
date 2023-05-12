@@ -28,7 +28,10 @@ function SetData() {
   useEffect(() => {
     fetch(`/set/${setCode}`)
       .then(response => response.json())
-      .then(data => setBackendData(data));
+      .then(data => {
+        console.log(data);
+        setBackendData(data);
+      });
   }, [setCode]);
   
   function getTextColor(colors) {
@@ -41,12 +44,20 @@ function SetData() {
     return "black";
   }
 
+  function getCardName(name) {
+    console.log(name);
+    if (typeof name === 'string' && name !== undefined) {
+      return name.replace(/_/g, "'");
+    }
+    return "";
+  }
+  
   return (
     <div className="cardsTable">
       <div>
         {backendData.slice(0, backendData.length).map(card => (
           <div className="card" key={card.id * 2} style={{ background: getCardBackground(card.colors), color: getTextColor(card.colors) }}>
-            <h2>{card.name} ({card.number} of {backendData[backendData.length - 1].number})</h2>
+            <h2>{getCardName(card.name)} ({card.number} of {backendData[backendData.length - 1].number})</h2>
             <p>Art by {card.artist}</p>
           </div>
         ))}

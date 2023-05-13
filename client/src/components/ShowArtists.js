@@ -24,7 +24,7 @@ function ShowArtists() {
         artistNames.push(artist)
       }
     }
-    return artistNames;
+    return artistNames.sort();
   }
   
   return (

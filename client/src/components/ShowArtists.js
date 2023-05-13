@@ -9,13 +9,11 @@ function ShowArtists() {
     fetch(`/set/${setCode}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setBackendData(data);
       });
   }, [setCode]);
 
   function getArtistNames(cards) {
-    console.log(backendData);
     let artistNames = [];
     let artist;
     for (let i = 0; i < cards.length; i++) {

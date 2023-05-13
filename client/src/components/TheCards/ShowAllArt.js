@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
-
+import React from 'react';
 
 function ShowAllArt() {
   const importAll = (r) => {
@@ -9,9 +6,9 @@ function ShowAllArt() {
     r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
     return images;
   }
-  
+
   const images = importAll(require.context('../../images/', true, /\.png$/));
-  
+
   return (
     <div className="card-img-table">
       {Object.keys(images).map((key) => (
@@ -20,7 +17,5 @@ function ShowAllArt() {
     </div>
   );
 }
-export default ShowAllArt;
 
-//return (    <div>      <img src={myImage+ '/Angel of Flight Alabaster.png'} alt="My Image" /* use the img tag with the src attribute */ />     </div>  );
-  
+export default ShowAllArt;

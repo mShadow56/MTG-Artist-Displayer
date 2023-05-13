@@ -13,8 +13,8 @@ function App() {
         <Route path="/set/:setCode" element={
           <div className="page-view">
             <ShowArtists/>
-            <ShowArtByArtist artist="Bud Cook" />
-            <ShowCards/>
+            
+            <ShowCards />
           </div>}>
         </Route>
       </Routes>

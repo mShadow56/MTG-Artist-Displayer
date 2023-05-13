@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ShowArtByArtist from './ShowArtByArtist';
 
 function ShowArtists() {
   const { setCode } = useParams();
   const [backendData, setBackendData] = useState([{}]);
+  const [theArtist, setTheArtist]= useState('Bud Cook');
 
   useEffect(() => {
     fetch(`/set/${setCode}`)
@@ -25,13 +27,30 @@ function ShowArtists() {
     return artistNames.sort();
   }
   
+  function showImg(prop){
+    return <ShowArtByArtist artist={prop}></ShowArtByArtist>;
+  }
+
+  let imgArtist = 'Bud Cook';
+
+  function setImgArtist(artist) {
+    imgArtist = artist;
+  }
+
+  function showTheArtist(name) {
+    setTheArtist(name);
+  }
+
   return (
-    <div className="artistsTable">
-        {getArtistNames(backendData).map(artist => (
-        <div className="artist" key={artist}>
-            <h3>{artist}</h3>
-        </div>
-        ))}
+    <div className="page-view">
+      <div className="artistsTable">
+          {getArtistNames(backendData).map(artist => (
+          <div className="artist" key={artist} onClick={() => showTheArtist(artist)} >
+              <h3>{artist}</h3>
+          </div>
+          ))}
+      </div>
+      <ShowArtByArtist artist={theArtist}></ShowArtByArtist>
     </div>
   );
 }

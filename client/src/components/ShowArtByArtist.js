@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ShowArt from './ShowArt';
 
-function ShowArtByArtist(artist) {
+function ShowArtByArtist({artist}) {
 
  //Collects data from the MySQL database
   const { setCode } = useParams();
@@ -27,17 +26,11 @@ function ShowArtByArtist(artist) {
     return cardNames;
   }
 
-    console.log(artist);
-    console.log(backendData);
-
   return (
-    <div>
-      <div className="card-img-table">
-          {getCardNames(backendData).map(artist => (
-            <ShowArt name={artist} />
-            ))}
-
-      </div>
+    <div className="card-img-table">
+      {getCardNames(backendData).map(name => (
+        <img className="card-img" src={require('../images/' + name + '.png')} alt={name} />
+      ))}
     </div>
   );
 }

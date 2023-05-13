@@ -5,8 +5,8 @@ let con = mysql.createPool({
   connectionLimit: 10, // default = 10
   host: "localhost",
   user: "root",
-  password: "secret",
-  database: "mtg-db",
+  password: "",
+  database: "mtg",
 });
 
 function getTableData(tableName, callback) {

@@ -41,7 +41,7 @@ function ShowCards() {
     fetch(`/set/${setCode}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        //console.log(data);
         setBackendData(data);
       });
   }, [setCode]);
@@ -57,7 +57,7 @@ function ShowCards() {
   }
 
   function getCardNameWithApostrophe(name) {
-    console.log(name);
+    //console.log(name);
     if (typeof name === 'string' && name !== undefined) {
       return name.replace(/_/g, "'");
     }

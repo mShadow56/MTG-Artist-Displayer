@@ -3,8 +3,8 @@ let mysql = require("mysql2");
 let connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "secret",
-  database: "mtg-db",
+  password: "",
+  database: "mtg",
 });
 
 function insertNewCard(name, artist, setCode, number) {

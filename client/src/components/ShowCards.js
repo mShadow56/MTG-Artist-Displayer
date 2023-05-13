@@ -66,7 +66,8 @@ function ShowCards() {
     <div className="cardsTable">
       {backendData.slice(0, backendData.length).map(card => (
         <div className="card" key={card.id * 2} style={{ background: getCardBackground(card.colors), color: getTextColor(card.colors) }}>
-          <h3>{getCardNameWithApostrophe(card.name)} ({card.number} of {backendData[backendData.length - 1].number})</h3>
+          <h3>{getCardNameWithApostrophe(card.name)}</h3>
+          <h3>({card.number} of {backendData[backendData.length - 1].number})</h3>
           <p>Art by {card.artist}</p>
         </div>
       ))}

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-function ShowArtByArtist({artist}) {
+function ShowArtByArtist({ artist }) {
 
- //Collects data from the MySQL database
+  //Collects data from the MySQL database
   const { setCode } = useParams();
   const [backendData, setBackendData] = useState([{}]);
 

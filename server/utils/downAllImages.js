@@ -30,7 +30,7 @@ function start(i) {
             });
           };
 
-          download(sixthLink, `./images/` + `${results[i].name}` + `.png`, function () {
+          download(sixthLink, `../../client/src/images/` + `${results[i].name}` + `.png`, function () {
             console.log('done');
           });
         })

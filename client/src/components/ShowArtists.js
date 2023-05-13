@@ -18,27 +18,24 @@ function ShowArtists() {
     console.log(backendData);
     let artistNames = [];
     let artist;
-    for (let i; i < cards.length; i++) {
+    for (let i = 0; i < cards.length; i++) {
       artist = cards[i].artist;
       if (!artistNames.includes(artist)) {
         artistNames.push(artist)
       }
     }
+    return artistNames;
   }
-
-  const artistNames = getArtistNames(backendData.cards);
   
   return (
-    <div>
-      <div className="artistsTable">
-        {artistNames.map(artist => (
-          <div className="artist" key={artist}>
-            {artist}
-          </div>
+    <div className="artistsTable">
+        {getArtistNames(backendData).map(artist => (
+        <div className="artist" key={artist}>
+            <h3>{artist}</h3>
+        </div>
         ))}
-      </div>
     </div>
   );
 }
 
-export default SetData;
+export default ShowArtists;

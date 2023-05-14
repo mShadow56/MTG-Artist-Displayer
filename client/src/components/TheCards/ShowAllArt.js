@@ -7,7 +7,7 @@ function ShowAllArt() {
     return images;
   }
 
-  const images = importAll(require.context('../../images/', true, /\.png$/));
+  const images = importAll(require.context('../images/', true, /\.png$/));
 
   return (
     <div className="card-img-table">

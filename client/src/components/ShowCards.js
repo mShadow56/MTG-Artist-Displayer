@@ -44,7 +44,7 @@ function ShowCards() {
         setBackendData(data);
       });
   }, [setCode]);
-  
+
   function getTextColor(colors) {
     if (!colors || !Array.isArray(colors)) {
       return "black";
@@ -61,7 +61,7 @@ function ShowCards() {
     }
     return "";
   }
-  
+
   return (
     <div className="cardsTable">
       {backendData.slice(0, backendData.length).map(card => (

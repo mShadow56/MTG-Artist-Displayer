@@ -19,7 +19,9 @@ function ShowArtByArtist({ artist }) {
   function getCardNames(cards) {
     let cardNames = [];
     for (let i = 0; i < cards.length; i++) {
-      if (cards[i].artist === artist) {
+      if (artist === "") {
+        cardNames.push(cards[i].name);
+      } else if (cards[i].artist === artist) {
         cardNames.push(cards[i].name);
       }
     }

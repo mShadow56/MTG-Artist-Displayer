@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ShowArt(cardNames) {
-
+ 
     const names = [];
     for (let i = 0; i < cardNames.length; i++) {
         names.push(cardNames[i]);

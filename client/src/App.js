@@ -12,10 +12,12 @@ function App() {
         <Route path="/set/:setCode" element={
           <div>
             <Navigation />
-          <div className="page-view">
-            <ShowArtists/>
-            <ShowCards/>
-          </div></div>}>
+            <div className="page-view">
+              <ShowArtists />
+              <ShowCards />
+            </div>
+          </div>
+        }>
         </Route>
       </Routes>
     </BrowserRouter>

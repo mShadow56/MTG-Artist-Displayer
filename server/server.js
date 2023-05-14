@@ -8,8 +8,8 @@ const app = express();
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
-  database: "mtg",
+  password: "secret",
+  database: "mtg-db",
 });
 
 // API endpoint for getting cards in a specific set

@@ -109,7 +109,7 @@ function closeConnection() {
         return;
       }
 
-      console.log('Connection to the MySQL server closed.');
+      console.log('Disconnected from the MySQL server.');
       resolve();
     });
   });

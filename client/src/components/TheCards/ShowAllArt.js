@@ -1,43 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 
 function ShowAllArt() {
-  
-    const { setCode } = useParams();
-    const [backendData, setBackendData] = useState([{}]);
-  
-    useEffect(() => {
-      fetch(`/set/${setCode}`)
-        .then(response => response.json())
-        .then(data => {
-          setBackendData(data);
-        });
-    }, [setCode]);
+  const importAll = (r) => {
+    let images = {};
+    r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images;
+  }
 
-    const cardNamesArray = backendData.map(item => item['name']);
-    const sortedArrayOfCardNames=cardNamesArray.sort();
-        console.log(sortedArrayOfCardNames);
+  const images = importAll(require.context('../images/', true, /\.png$/));
 
   return (
-    <div>
-<h2>Cards:</h2>
-    
-      
-    {sortedArrayOfCardNames.map((name, index) => (
-      <div class="card">
-      
-      <img src={require('../../server/utils/images/'+name+'.png')} style={{ width: 250, height: 300 }} key={index} />
-   </div>
-    ))}
-        
-     
+    <div className="card-img-table">
+      {Object.keys(images).map((key) => (
+        <img className="card-img" src={images[key]} alt={key} />
+      ))}
     </div>
   );
-
- 
-  
 }
-export default ShowAllArt;
 
-//return (    <div>      <img src={myImage+ '/Angel of Flight Alabaster.png'} alt="My Image" /* use the img tag with the src attribute */ />     </div>  );
-  
+export default ShowAllArt;

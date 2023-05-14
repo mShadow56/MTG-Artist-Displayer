@@ -1,30 +1,27 @@
 import "./App.css";
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ShowArtists from './components/ShowArtists';
 import ShowCards from './components/ShowCards';
-import ArtistList from "./components/TheArtists/ArtistList";
-import ShowArt from "./components/TheCards/ShowArt";
+import Navigation from "./components/Navigation";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/set/:setCode" element={<div>
-
-      
-<section class="layout">
-  <div class="sidebar"><ArtistList /></div>
-  <div class="body"><ShowCards /> <ShowArt name='Bloodflow Connoisseur.png'></ShowArt></div>
-</section>
-            
-
-       
-
-        
-          </div>} ></Route>
+        <Route path="/set/:setCode" element={
+          <div>
+            <Navigation />
+            <div className="page-view">
+              <ShowArtists />
+              <ShowCards />
+            </div>
+          </div>
+        }>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-   //<ShowArt name="Angel of Flight Alabaster.png" />
+
 export default App;

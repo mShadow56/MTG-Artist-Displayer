@@ -1,5 +1,4 @@
 const fs = require('fs');
-const cardData = require('./CardData.json');
 const database = require('./database');
 
 fs.readFile('./CardData.json', async (error, data) => {
@@ -9,11 +8,13 @@ fs.readFile('./CardData.json', async (error, data) => {
   }
 
   const objArray = JSON.parse(data);
-  const setSize = objArray.data.baseSetSize;
-  const cards = objArray.data.cards;
+  const setData = objArray.data;
+  const setCode = setData.code;
+  const setName = setData.name;
+  const setSize = setData.baseSetSize;
+  const cards = setData.cards;
   let name;
   let artist;
-  let setCode;
   let number;
   let colors;
 

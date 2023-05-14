@@ -9,6 +9,10 @@
     user-select: none;
 }
 
+.navi-setCode{
+  margin:auto;
+}
+
 .artistsTable {
     border: 4px solid black;
     background-color: grey;

@@ -37,7 +37,7 @@ function getCards(cards) {
       {getCards(backendData).map(card => (
         <img
           className="card-img"
-          src={require(`../images/${setCode}/${card.number}-${card.name}.png`)}
+          src={require(`../images/${setCode.toLocaleUpperCase()}/${card.number}-${card.name}.png`)}
           alt={card.name}
         />
       ))}

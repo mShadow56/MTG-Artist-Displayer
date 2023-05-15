@@ -1,7 +1,5 @@
-:root {
-    --image-width: calc(100% / 3);
-}
 
+/* The CSS used for set pages */
 .page-view {
     display: flex;
     width: 100%;
@@ -9,33 +7,39 @@
     user-select: none;
 }
 
+/* Used for the navigation bar at top -- WIP */
 .navi-setCode {
-    margin: 2vh;
+    border: 4px solid black;
+    padding: 1vh;
+    margin: 2px;
     user-select: none;
 }
 
+/* Used specifically for the text within a nav-bar */
 .navi-title {
     text-align: center;
     font-size: large;
     font-weight: bold;
 }
 
+/* CSS for the table containing artist elements */
 .artistsTable {
     border: 4px solid black;
     background-color: grey;
     padding: 2px;
     margin: 2px;
     width: 25%;
-    height: 80vh;
-    overflow: auto;
+    height: 80vh; /* Height is 80% of the visible height of the page */
+    overflow: auto; /* If there is overflow in this element, it becomes scrollable */
     float: left;
 }
 
+/* Removes the scrollbar from the .artistsTable, but keeps scrollability */
 .artistsTable::-webkit-scrollbar {
     display: none;
-    width: 0;
 }
 
+/* Used for elements representing artists */
 .artist {
     border: 2px solid black;
     background: radial-gradient(silver, #646464);
@@ -43,29 +47,35 @@
     margin: 2px;
     text-align: center;
     width: auto;
-    height: auto;
+    height: 5vh;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
 }
 
+/* Makes the .artist elements change color on hovering */
 .artist:hover {
     background: radial-gradient(white, silver);
 }
 
+/* Styles the table that contains information on the cards within a set */
 .cardsTable {
     border: 4px solid black;
     background-color: grey;
     padding: 2px;
     margin: 2px;
     width: 20%;
-    height: 80vh;
-    overflow: auto;
+    height: 80vh; /* Height is 80% of the visible height of the page */
+    overflow: auto; /* If there is overflow in this element, it becomes scrollable */
     float: right;
 }
 
+/* Removes the scrollbar from the .cardsTable, but keeps scrollability */
 .cardsTable::-webkit-scrollbar {
     display: none;
-    width: 0;
 }
 
+/* Styles the cards boxes */
 .card {
     border: 2px solid black;
     padding: 2px;
@@ -75,24 +85,26 @@
     height: auto;
 }
 
+/* Styles the table containing images of cards */
 .card-img-table {
+    border: 4px solid black;
     padding: 2px;
     margin: 2px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr); /* Makes it so five cards are shown per row */
     grid-gap: 10px;
     width: 100%;
-    height: 90vh;
-    overflow: auto;
+    height: 80vh; /* Height is 80% of the visible height of the page */
+    overflow: auto; /* If there is overflow in this element, it becomes scrollable */
 }
 
+/* Removes the scrollbar from the .card-img-table, but keeps scrollability */
 .card-img-table::-webkit-scrollbar {
     display: none;
-    width: 0;
 }
 
+/* Styles the card images */
 .card-img {
-    /*width: var(--image-width);*/
     flex-direction: row;
     width: 100%;
     height: auto;

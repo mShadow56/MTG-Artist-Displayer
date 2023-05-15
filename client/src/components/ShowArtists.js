@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ShowArtByArtist from './ShowArtByArtist';
 
+/**
+ * Shows all the artists who created art for a given set, as well as either all card arts within a set if the 'Show All Cards' button is pressed, which it is by default
+ * Or it shows all the cards whose artwork was created by whichever artist's button was pressed
+ */
 function ShowArtists() {
   const { setCode } = useParams();
   const [backendData, setBackendData] = useState([{}]);
@@ -19,6 +23,7 @@ function ShowArtists() {
     return <div>Loading . . .</div>
   }
 
+  //Returns a list of all the artist names within a set, never repeating the same name twice
   function getArtistNames(cards) {
     let artistNames = [];
     let artist;
@@ -70,12 +75,12 @@ function ShowArtists() {
     <div className="page-view">
       <div className="artistsTable">
         <div className="artist" key={"AllButton"} onClick={() => showArtByArtist("")}>
-          <h3>Show All Cards</h3>
+          <div>Show All Cards</div>
         </div>
         {getArtistNames(backendData).map(artist => (
           <div className="artist" key={artist} onClick={() => showArtByArtist(artist)} >
-            <h3>{artist}</h3>
-            <h5>{getPercentage(getTotalCount(backendData), getArtCount(backendData, artist))}% ({getArtCount(backendData, artist)} of {getTotalCount(backendData)})</h5>
+            <div>{artist}</div>
+            <div>{getPercentage(getTotalCount(backendData), getArtCount(backendData, artist))}% ({getArtCount(backendData, artist)} of {getTotalCount(backendData)})</div>
           </div>
         ))}
       </div>

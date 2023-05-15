@@ -1,5 +1,11 @@
 let mysql = require("mysql2");
 
+/**
+ * This file creates a new connection to the mtg-db database.
+ * It includes two functions for opening and closing the connection, respectively,
+ * as well as a function for selecting all the values from the given table.
+ */
+
 let connection = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -7,6 +13,9 @@ let connection = mysql.createConnection({
   database: "mtg-db",
 });
 
+/**
+ * Makes a query to select all values from the table that is given to the function
+ */
 function getTableData(tableName) {
   return new Promise((resolve, reject) => {
     const sql = `SELECT * FROM ${tableName}`;

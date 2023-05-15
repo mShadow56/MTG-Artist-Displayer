@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+/**
+ * This component, ShowArtByArtist.js, finds the names of all the cards whose artwork a given artist has created.
+ * It then creates a new image element per card name, finding the relevant image,
+ * and returns the result when all images are found
+ */
+
 function ShowArtByArtist({ artist }) {
 
   //Collects data from the MySQL database
@@ -15,23 +21,24 @@ function ShowArtByArtist({ artist }) {
       });
   }, [setCode]);
 
-  //Finds related images and makes an Array
-  function getCardNames(cards) {
-    let cardNames = [];
-    for (let i = 0; i < cards.length; i++) {
-      if (artist === "") {
-        cardNames.push(cards[i].name);
-      } else if (cards[i].artist === artist) {
-        cardNames.push(cards[i].name);
-      }
-    }
-    return cardNames;
+/**
+ * 
+ */
+function getCards(cards) {
+  if (artist === "") {
+    return cards;
   }
+  return cards.filter(card => card.artist === artist);
+}
 
   return (
     <div className="card-img-table">
-      {getCardNames(backendData).map(name => (
-        <img className="card-img" src={require('../images/' + name + '.png')} alt={name} />
+      {getCards(backendData).map(card => (
+        <img
+          className="card-img"
+          src={require(`../images/${setCode}/${card.number}-${card.name}.png`)}
+          alt={card.name}
+        />
       ))}
     </div>
   );

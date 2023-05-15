@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+/**
+ * This is the component for the navigation bar at the top of the /set/:setCode pages
+ */
 function Navigation() {
+  //Retrieves the setCode that is written in the address/path
   const { setCode } = useParams();
 
   useEffect(() => {
@@ -9,6 +13,7 @@ function Navigation() {
   }, [setCode]);
 
 
+  //Uses the setCode in the text, describing which set is currently viewed
   return (
     <nav>
       <div className="navi-setCode">

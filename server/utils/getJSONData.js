@@ -1,12 +1,23 @@
 const fs = require('fs');
 const request = require('request');
 
-request('https://mtgjson.com/api/v5/SIS.json', function (error, response, body) {
-  if (!error && response.statusCode == 200) {
+/**
+ * This file downloads a JSON file from a website using the set parameter to find the intended file
+ */
+function getJSONData(set) {
 
-     fs.writeFile('CardData.json', body, (err) => {
-        if(err) throw err;
-        console.log('file succesfully saved!');
-     });
-  }
-})
+   const fileName = 'CardData.json';
+
+   request(`https://mtgjson.com/api/v5/${set}.json`, function (error, response, body) {
+     if (!error && response.statusCode == 200) {
+
+        fs.writeFile(fileName, body, (err) => {
+           if(err) throw err;
+           console.log(`File "${fileName}" succesfully saved!`);
+        });
+     }
+   })
+
+}
+
+module.exports = { getJSONData };

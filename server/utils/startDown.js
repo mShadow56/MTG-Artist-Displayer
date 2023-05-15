@@ -1,23 +1,30 @@
-const downer = require('./downAllImages');
-const burger = require('./getAllCards.js');
+const imageDownloader = require('./downAllImages.js');
+const getAllCards = require('./getAllCards.js');
 
 let results;
 
+/**
+ * The startDown.js main function uses the getAllCards.js to get all the data from the 'cards' table.
+ * This is then used to find the number of cards for which an image will need to be downloaded.
+ * Finally, imageDownloader downloads the corresponding image for each card
+ */
 async function main() {
-    await burger.openConnection();
+    await getAllCards.openConnection();
 
     try {
-        results = await burger.getTableData("cards");
+        results = await getAllCards.getTableData("cards");
+
+        //imageDownloader.createFolder(results[0].setCode)
 
         for (let i = 0; i < results.length; i++) {
-            await downer.start(i);
+            await imageDownloader.start(i);
         }
         console.log("DONE!!!");
     } catch (error) {
         console.log("ERROR")
         console.error(error);
     } finally {
-        await burger.closeConnection();
+        await getAllCards.closeConnection();
     }
 }
 

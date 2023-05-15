@@ -22,7 +22,8 @@ function ShowArtByArtist({ artist }) {
   }, [setCode]);
 
 /**
- * 
+ * This function returns all cards if artist is an empty string (which it will be if the button 'Show All Cards' is pressed),
+ * otherwise, returns the cards where card.artist equals the artist prop
  */
 function getCards(cards) {
   if (artist === "") {
